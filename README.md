@@ -4,10 +4,10 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
 
 ## Overview
 
-* Built a machine learning model that estimates apartment prices for buy & rent in german federal state North Rhine-Westphalia. Model is easy usable via a web-application deployed on Heroku:  [PLACEHOLDER] 
+* Built a machine learning model that estimates apartment prices for buy & rent in german federal state North Rhine-Westphalia. Model is easy usable via a web-application deployed on Heroku: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
 * Scraped apartment-exposes data as of May 2022 from [immowelt.de](https://www.immowelt.de) (~ 3,500 for buy and ~ 4,600 for rent) with an own developed web-scraper.
 * Cleaned & feature-engineered scraped data to get useful information for building the model.
-* Explored the prepared data with univariate, multivariate and geographic analysis using visulisations: [Exploring](presentation/Exploring.html) [PLACEHOLDER]
+* Explored the prepared data with univariate, multivariate and geographic analysis using visulisations: [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html)
 * Configured and cross-validated different machine learning models: *Random Forest Regressor, K-Nearest-Neighbors Regressor, Linear Regressors*. The best scoring model is a grid-search optimised *Random Forest Regression* model, which yields following results:
   
   | Data set | Cross-validation median relative error | Test-validation median relative error | Test-validation 90%-quantile relative error |
@@ -34,7 +34,7 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
 
 ## How to run/edit this Project on your machine
 * HINTS:
-  * If you view this site via URL [PLACEHOLDER] you only see a webpage version of the GitHub repo's README.md file and you need to switch to the GitHub repo to see and download the code: [PLACEHOLDER]
+  * If you view this site via [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments) you only see a webpage version of the GitHub repo's README.md file and you need to switch to the GitHub repo [github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments](https://github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments) to see and download the code.
   * Some defined filepaths in the modules described below may need to be manually adjusted for your machine!
 * Download this repo into a directory of your choice.
 * Create a new conda environment with configuration defined in *environment.yml*
@@ -52,7 +52,7 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
     * output: model_buy.p, model_rent.p
 * *analysing.py* can be used to analyse all data created by the modules mentioned before - it loads the stored data in the created csv-/p-files dataframes back in the RAM.
 * To run/edit the exploration of the feature-engineered data: open with Jupyter-Notebook *exploring.ipynb*
-* To run/edit the web-application on your machine locally you need to download the files and follow the instructions given in this separate GitHub repo: [PLACEHOLDER]
+* To run/edit the web-application on your machine locally you need to download the files and follow the instructions given in this separate GitHub repo: [github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application](https://github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application)
 
 ## Scraping
 
@@ -101,7 +101,7 @@ The feature-engineering of the dataframes consists of:
 
 ### Main Results
 
-* **HINT:** To see all results and more details please visit the rendered HTML-page of the *exploring.ipynb*-file: [Exploring](presentation/Exploring.html) [PLACEHOLDER]
+* **HINT:** To see all results and more details please visit the rendered HTML-page of the *exploring.ipynb*-file: [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html)
 * Price and Area variables are right skewed => after log-transformation more similiar to normal-distribution
 * Much more offers for rent than for buy for the 'Ruhrgebiet' region
 * Strongest positive correlation between Price and Area variables, also positive correlation between Price and the variables for Number of Rooms, Construction Year and equipment features like 'Maisonette', 'Penthouse', 'First Occupancy', 'Upscale', 'Terrace' - all similar between buy and rent
@@ -205,7 +205,7 @@ Adding this created variable as a independent variable to the best (until then) 
 
 <a id='productionization'></a>
 ## Productionization: Web-Application
-* To easly use the best model for estimating buy & rent prices for individual apartment-configurations I created a web-application *app.py* using *Flask* and deployed it to *Heroku*. It has a comfortable user-interface and is accessible for everyone via the internet by calling this link: [PLACEHOLDER]
+* To easly use the best model for estimating buy & rent prices for individual apartment-configurations I created a web-application *app.py* using *Flask* and deployed it to *Heroku*. It has a comfortable user-interface and is accessible for everyone via the internet by calling this link: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
 * By calling the link, the user automatically sends a request to the *app.py* deployed to Heroku, which then returns an HTML-input-formular to specify the desired apartment-configuration:
 
   <img src="presentation/Web-App_Input.PNG">
@@ -215,7 +215,7 @@ via a new HTML-page:
 
   <img src="presentation/Web-App_Output.PNG">
 
-* Code, detailed description and related files of the app are stored in this GitHub repo: [PLACEHOLDER]
+* Code, detailed description and related files of the app are stored in this GitHub repo: [github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application](https://github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application)
 
 
 
