@@ -14583,6 +14583,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <p>Author: <a href="https://github.com/micvolk">Michael Volk</a></p>
 <hr>
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>In this Jupyter-Notebook scraped and prepared apartment-exposes-data for buy &amp; rent from <a href="https://www.immowelt.de">immowelt.de</a> for the german federal state North Rhine-Westphalia as of May 2022 is explored. For the exploration descriptive statistics techniques like univariate and multivariate analysis are used. Also geographic analysis regarding prices per area in North Rhine Westphalia and regarding rent-to-buy-price-ratio is performed.</p>
+<p>This Jupyter-Notebook is part of my project: <a href="https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments">micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments</a> <br/>
+Visit the website and get a detailed description of the project steps - starting from scraping, preparing and exploring the data from immowelt.de, evaluating different machine learning models and ending with transferring the best model into production by building a Web-App. <br/>
+To use the Web-App please follow this link: <a href="https://price-estimator-apartment-nrw.herokuapp.com">price-estimator-apartment-nrw.herokuapp.com</a></p>
 <h3 id="Previous-steps-with-own-developed-Python-modules">Previous steps with own developed Python-modules<a class="anchor-link" href="#Previous-steps-with-own-developed-Python-modules">&#182;</a></h3><ul>
 <li><em>scraping.py</em>: apartment-expose-data has been scraped from <a href="https://www.immowelt.de">immowelt.de</a> in May 2022 with an own built web-scraper. The scraped data includes apartment-exposes in german state North Rhine-Westphalia for buy and for rent - the exposes-data has been saved as pandas-dataframes (pickled in csv-files) - one for buy and one for rent.</li>
 <li><em>cleaning.py</em>: Scraped data has been cleaned (dropping apartments which did not match certain conditions and dropping useless features)</li>
@@ -14612,9 +14615,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </ul>
 </li>
 </ul>
-<h3 id="Related-Topics">Related Topics<a class="anchor-link" href="#Related-Topics">&#182;</a></h3><p>This Jupyter-Notebook is part of my project: <a href="https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments">micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments</a> <br/>
-Visit the website and get a detailed description of the project steps - starting from scraping, preparing and exploring the data from immowelt.de, evaluating different machine learning models and ending with transferring the best model into production by building a Web-App. <br/>
-To use the Web-App please follow this link: <a href="https://price-estimator-apartment-nrw.herokuapp.com">price-estimator-apartment-nrw.herokuapp.com</a></p>
 <hr>
 
 </div>

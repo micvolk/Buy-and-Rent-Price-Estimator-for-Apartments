@@ -20,12 +20,12 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
   <img src="presentation/Web-App_Input.PNG">
 
 ## Sources used
-* Data source for the web-scraper: https://www.immowelt.de
-* Shapefile-map of North Rhine-Westphalia: https://www.opengeodata.nrw.de/produkte/geobasis/vkg/dvg/dvg2/
+* Data source for the web-scraper: [https://www.immowelt.de](https://www.immowelt.de)
+* Shapefile-map of North Rhine-Westphalia: [https://www.opengeodata.nrw.de/produkte/geobasis/vkg/dvg/dvg2/](https://www.opengeodata.nrw.de/produkte/geobasis/vkg/dvg/dvg2/)
 * Thanks to Ken Jee for inspiration on how to build your own Data Science Project from scratch:
-  * https://www.youtube.com/playlist?list=PL2zq7klxX5ASFejJj80ob9ZAnBHdz5O1t
-  * https://github.com/PlayingNumbers/ds_salary_proj
-* Thanks to GreekDataGuy on how to build a web-application using Flask and Heroku: https://towardsdatascience.com/productionize-a-machine-learning-model-with-flask-and-heroku-8201260503d2
+  * [https://www.youtube.com/playlist?list=PL2zq7klxX5ASFejJj80ob9ZAnBHdz5O1t](https://www.youtube.com/playlist?list=PL2zq7klxX5ASFejJj80ob9ZAnBHdz5O1t)
+  * [https://github.com/PlayingNumbers/ds_salary_proj](https://github.com/PlayingNumbers/ds_salary_proj)
+* Thanks to GreekDataGuy on how to build a web-application using Flask and Heroku: [https://towardsdatascience.com/productionize-a-machine-learning-model-with-flask-and-heroku-8201260503d2](https://towardsdatascience.com/productionize-a-machine-learning-model-with-flask-and-heroku-8201260503d2)
 
 ## Languages/Libraries/Tools used
 * **Languages:** Python (Version 3.8.13), HTML, Javascript
@@ -49,8 +49,8 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
     * output: *X_buy.csv*, *X_train_buy.csv*, *X_test_buy.csv*, *y_buy.csv*, *y_train_buy.csv*, *y_test_buy.csv*,
 *X_rent.csv*, *X_train_rent.csv*, *X_test_rent.csv*, *y_rent.csv*, *y_train_rent.csv*, *y_test_rent.csv*
   * *modeling.py*: cross-validation of different machine learning models and saving the best
-    * output: model_buy.p, model_rent.p
-* *analysing.py* can be used to analyse all data created by the modules mentioned before - it loads the stored data in the created csv-/p-files dataframes back in the RAM.
+    * output: *model_buy.p*, *model_rent.p*
+* *analysing.py* can be used to analyse all data created by the modules mentioned before - it loads the stored data in the created csv-/p-files back in the RAM.
 * To run/edit the exploration of the feature-engineered data: open with Jupyter-Notebook *exploring.ipynb*
 * To run/edit the web-application on your machine locally you need to download the files and follow the instructions given in this separate GitHub repo: [github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application](https://github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application)
 
@@ -101,7 +101,7 @@ The feature-engineering of the dataframes consists of:
 
 ### Main Results
 
-* **HINT:** To see all results and more details please visit the rendered HTML-page of the *exploring.ipynb*-file: [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html)
+* HINT: To see all results and more details please visit the rendered HTML-page of the *exploring.ipynb*-file: [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html)
 * Price and Area variables are right skewed => after log-transformation more similiar to normal-distribution
 * Much more offers for rent than for buy for the 'Ruhrgebiet' region
 * Strongest positive correlation between Price and Area variables, also positive correlation between Price and the variables for Number of Rooms, Construction Year and equipment features like 'Maisonette', 'Penthouse', 'First Occupancy', 'Upscale', 'Terrace' - all similar between buy and rent
@@ -205,12 +205,12 @@ Adding this created variable as a independent variable to the best (until then) 
 
 <a id='productionization'></a>
 ## Productionization: Web-Application
-* To easly use the best model for estimating buy & rent prices for individual apartment-configurations I created a web-application *app.py* using *Flask* and deployed it to *Heroku*. It has a comfortable user-interface and is accessible for everyone via the internet by calling this link: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
+* To easly use the best model for estimating buy & rent prices for individual apartment-configurations I created a web-application *app.py* using Flask and deployed it to Heroku. It has a comfortable user-interface and is accessible for everyone via the internet by calling this link: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
 * By calling the link, the user automatically sends a request to the *app.py* deployed to Heroku, which then returns an HTML-input-formular to specify the desired apartment-configuration:
 
   <img src="presentation/Web-App_Input.PNG">
 
-* After filling out the formular and hitting the submit-button the formular-input is sent to the app via a POST-request. Then a buy & rent price estimation is performed, which is based on the formular-input-data and the deposited best model (*'model_buy.p', 'model_rent.p'*) created by *modeling.py*. The buy- & rent-estimation-values together with associated confidence-intervalls, which are derived from the also deposited 90%-quantile relative error of the model-test-validation, are then returned
+* After filling out the formular and hitting the submit-button the formular-input is sent to the app via a POST-request. Then a buy & rent price estimation is performed, which is based on the formular-input-data and the deposited best model (*model_buy.p*, *model_rent.p*) created by *modeling.py*. The buy- & rent-estimation-values together with associated confidence-intervalls, which are derived from the also deposited 90%-quantile relative error of the model-test-validation, are then returned
 via a new HTML-page:
 
   <img src="presentation/Web-App_Output.PNG">
