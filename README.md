@@ -40,16 +40,10 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
 * Create a new conda environment with configuration defined in *environment.yml*
 * Run *executer.py* which calls the Python-modules in following order:
   * *scraping.py*: web-scraping of apartment-exposes from immowelt.de
-    * output: *scraped_buy.csv*, *scraped_rent.csv*
   * *cleaning.py*: cleaning of scraped data
-    * output: *cleaned_buy.csv*, *cleaned_rent.csv*
   * *featureEngineering.py*: feature-engineering of cleaned data
-    * output: *featureEngineered_buy.csv*, *featureEngineered_rent.csv*, *nrwCityCoordinates.csv*
   * *trainTestSplitting.py*: splits feature-engineered data into train and test set
-    * output: *X_buy.csv*, *X_train_buy.csv*, *X_test_buy.csv*, *y_buy.csv*, *y_train_buy.csv*, *y_test_buy.csv*,
-*X_rent.csv*, *X_train_rent.csv*, *X_test_rent.csv*, *y_rent.csv*, *y_train_rent.csv*, *y_test_rent.csv*
   * *modeling.py*: cross-validation of different machine learning models and saving the best
-    * output: *model_buy.p*, *model_rent.p*
 * *analysing.py* can be used to analyse all data created by the modules mentioned before - it loads the stored data in the created csv-/p-files back in the RAM.
 * To run/edit the exploration of the feature-engineered data: open with Jupyter-Notebook *exploring.ipynb*
 * To run/edit the web-application on your machine locally you need to download the files and follow the instructions given in this separate GitHub repo: [github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application](https://github.com/micvolk/Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application)
