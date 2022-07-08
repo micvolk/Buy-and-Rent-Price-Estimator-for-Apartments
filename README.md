@@ -14,7 +14,7 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
   | --- | --- | --- | --- |
   | buy | ~ 19% | ~ 17% | ~ 48% |
   | rent | ~ 14% | ~ 13% | ~ 43% |
-  
+
 * Created a comfortable user-interface for enabling individual apartment-configurations (see screenshot below) and getting price-estimates for buy & rent based on the best model. For this a web-application was developed using Flask and deployed to Heroku, which is accessible for everyone via the internet (see link at first point).
 
   <img src="presentation/Web-App_Input.PNG">
@@ -150,7 +150,7 @@ Arguments for having choosen these machine learning model types by taking into a
     * good for *Linear Regression* model and *K-Nearest Neighbors Regression* model
     * hard for *Random Forest Regression* model
 
-For all machine learning model types different configurations regarding considered independent variables and transformation/scaling  are trained and tested. For the best performing model-configuration also grid-search regarding the most promising parameters is performed. (=hyperparameter-optimisation). For more details see section [Results](#results).
+For all machine learning model types different configurations regarding considered independent variables and transformation/scaling  are trained and tested. For the best performing model-configuration also grid-search regarding the most promising parameters is performed (=hyperparameter-optimisation). For more details see section [Results](#results).
 
 ### Transformations and Scaling
 
@@ -185,7 +185,7 @@ Every model gets cross-validated based on the train-data (80%) with 3 folds. The
   
   In contrast to the *Random Forest Regression* models a configuration with all independent variables (all standard-scaled) performs much worser => probable reason: the [curse of dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality), e.g. to much independent variables in relation to training-data-size makes predictions worser for distance-measure-based models like *K-Nearest Neighbors Regression* because the vector-room becomes to sparsely populated.
 
-* *Linear Regression* models, perform worser than the best *Random Forest Regression* and *K-Nearest Neighbors Regression* model. The best *Linear Regression* model, which is based on all independent variables standard scaled and moreover variables Area and Rooms are log-transformed, yields following results:
+* *Linear Regression* models perform worser than the best *Random Forest Regression* and *K-Nearest Neighbors Regression* model. The best *Linear Regression* model, which is based on all independent variables standard scaled and moreover variables Area and Rooms are log-transformed, yields following results:
   
   | Data set | Cross-validation median relative error | Test-validation median relative error | Test-validation 90%-quantile relative error |
   | --- | --- | --- | --- |
