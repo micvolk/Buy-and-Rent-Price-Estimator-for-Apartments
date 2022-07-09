@@ -44,6 +44,7 @@ def gridSearch_fitAndPredict(X_train, y_train, X_test, y_test, columns, pipe,
     crossValScore_mean = -gs.best_score_
     y_test_predict = gs.best_estimator_.predict(X_test[columns])
     test_errors = (y_test_predict - y_test).abs()
+    test_errors_notAbsolute = (y_test_predict - y_test)
     test_mean_absolute_error = mean_absolute_error(y_test, y_test_predict)
     test_median_absolute_error = median_absolute_error(y_test, y_test_predict)
     test_explained_variance_score = explained_variance_score(y_test, y_test_predict)
@@ -55,7 +56,8 @@ def gridSearch_fitAndPredict(X_train, y_train, X_test, y_test, columns, pipe,
             'test_mean_absolute_error': test_mean_absolute_error,
             'test_explained_variance_score': test_explained_variance_score,
             'y_test_predict': y_test_predict,
-            'test_errors': test_errors}
+            'test_errors': test_errors,
+            'test_errors_notAbsolute': test_errors_notAbsolute}
 
 
 #----------------------------------------------------------------------------------------------------
@@ -326,10 +328,11 @@ def run():
         
         # Get model with used columns and test_errors and save it to file in current folder and web-application folder
         # HINT: Path of web-application folder is defined for my machine and needs to be adjusted for other machines!
-        for path in ['', '../buy-rent-price-estimator-for-apartments_web-application/']:
+        for path in ['', '../Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application/']:
             pickle.dump({'model': modelsAndMeasures[modelName]['pipe_with_model'],
                          'columns_used': modelsAndMeasures[modelName]['columns_used'],
-                         'test_errors': modelsAndMeasures[modelName]['test_errors']},
+                         'test_errors': modelsAndMeasures[modelName]['test_errors'],
+                         'test_errors_notAbsolute': modelsAndMeasures[modelName]['test_errors_notAbsolute']},
                          open(path + 'model' + cat + '.p', 'wb'))
             print('Best model for ' + cat[1:] + ': ' + modelName + ' - saved to file ' + path + 'model' + cat + '.p')
         

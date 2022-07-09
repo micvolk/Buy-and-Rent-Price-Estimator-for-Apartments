@@ -118,7 +118,7 @@ The feature-engineering of the dataframes consists of:
 *X_rent.csv*, *X_train_rent.csv*, *X_test_rent.csv*, *y_rent.csv*, *y_train_rent.csv*, *y_test_rent.csv*
 
 OPTIONAL: Function *add_nearestApartments_medianPrice_forModel()* can be used to create a new column with a price-estimate for every apartment based on its nearest-neighboors-apartments in the train-dataframes.
-That created column can be used as a independet variable in Linear Regression models in module *modeling.py*, as they are unable to handle complicated non-linear relationship between coordinates-information (Latitude, Longitude) and the dependent-variable (buy-/rent-price).
+That created column can be used as a independet variable in Linear Regression models in module *modeling.py*, as they are unable to handle the complicated non-linear relationship between coordinates-information (Latitude, Longitude) and the dependent-variable (buy-/rent-price).
 But by default this function is deactivated (but can easily be activated) because its very time-intensive to calculate and all in all the Linear Regression models are beaten by the *Random Forest Regression* and *K-Nearest Neighbors Regression* models, which also work well without that created independent variable (see next chapter Modeling for details).
 
 ## Modeling
@@ -136,7 +136,7 @@ Arguments for having choosen these machine learning model types by taking into a
     * can be problematic for *K-Nearest Neighbors Regression* model because of [curse of dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality) and for *Linear Regression* model because of tendence to overfitting => may be healed by identifying and choosing only the variables with most explanatory power
   * complicated non-linear relationship between coordinates-information (Latitude, Longitude) and the dependent-variable (buy- / rent-price) in train-test-dataframes:
     * no problem for *Random Forest Regression* model and *K-Nearest Neighbors Regression* model
-    * problematic for *Linear Regression* model as it can not handle complicated non-linear relationships => may be healed by using a created proxy-variable for coordinates information, which is created in module *trainTestSplitting.py*: price-estimate for every apartment based on its nearest-neighboors-apartments in the train-dataframes
+    * problematic for *Linear Regression* model as it can not handle the complicated non-linear relationships => may be healed by using a created proxy-variable for coordinates information, which is created in module *trainTestSplitting.py*: price-estimate for every apartment based on its nearest-neighboors-apartments in the train-dataframes
   * time needed to train the model:
     * *K-Nearest Neighbors Regression* model needs no training-time
     * but training-time is very short for both other models (except grid-search for best model-configuration) and so not really relevant at all
@@ -186,7 +186,7 @@ Every model gets cross-validated based on the train-data (80%) with 3 folds. The
   | buy | ~ 27% | ~ 26% | ~ 89% |
   | rent | ~ 17% | ~ 16% | ~ 54% |
 
-  The *Linear Regression* models have the disadvantage, that they are unable to handle complicated non-linear relationship between coordinates-information (Latitude, Longitude) and the dependent-variable (buy-/rent-price) - they can only differentiate between more north/south and more west/east, which is to rough to handle the geographic price-distribution in North Rhine-Westphalia (compare map in section Exploring).
+  The *Linear Regression* models have the disadvantage, that they are unable to handle the complicated non-linear relationship between coordinates-information (Latitude, Longitude) and the dependent-variable (buy-/rent-price) - they can only differentiate between more north/south and more west/east, which is to rough to handle the geographic price-distribution in North Rhine-Westphalia (compare map in section Exploring).
 Therefore on an experimental basis a proxy-variable for the coordinates-information has been feature-engineered in the module *trainTestSplitting.py*: The function *add_nearestApartments_medianPrice_forModel()* creates a new column (=new independent variable) with a price-estimate for every apartment based on its nearest-neighboors-apartments in the train-dataframes (Median Price per area of the n nearest apartments multiplied with Area) - unfortunately, the calculation of the function in its current form takes a lot of time.
 Adding this created variable as a independent variable to the best (until then) *Linear Regression* model yields much better results:
   
@@ -199,13 +199,12 @@ Adding this created variable as a independent variable to the best (until then) 
 
 <a id='productionization'></a>
 ## Productionization: Web-Application
-* To easly use the best model for estimating buy & rent prices for individual apartment-configurations I created a web-application *app.py* using Flask and deployed it to Heroku. It has a comfortable user-interface and is accessible for everyone via the internet by calling this link: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
+* To easily use the best model for estimating buy & rent prices for individual apartment-configurations I created a web-application *app.py* using Flask and deployed it to Heroku. It has a comfortable user-interface and is accessible for everyone via the internet by calling this link: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
 * By calling the link, the user automatically sends a request to the *app.py* deployed to Heroku, which then returns an HTML-input-formular to specify the desired apartment-configuration:
 
   <img src="presentation/Web-App_Input.PNG">
 
-* After filling out the formular and hitting the submit-button the formular-input is sent to the app via a POST-request. Then a buy & rent price estimation is performed, which is based on the formular-input-data and the deposited best model (*model_buy.p*, *model_rent.p*) created by *modeling.py*. The buy- & rent-estimation-values together with associated confidence-intervalls, which are derived from the also deposited 90%-quantile relative error of the model-test-validation, are then returned
-via a new HTML-page:
+* After filling out the formular and hitting the submit-button the formular-input is sent to the app via a POST-request. Then a buy & rent price estimation is performed, which is based on the formular-input-data and the deposited best model (*model_buy.p*, *model_rent.p*) created by *modeling.py*. The buy- & rent-estimation-values together with associated confidence-intervalls, which are derived from the relative error distribution of the model-test-validation, are then returned via a new HTML-page:
 
   <img src="presentation/Web-App_Output.PNG">
 

@@ -7,7 +7,9 @@ Loads all saved files created by executer.py for analysing them
 
 import generalFunctions as gf
 import pickle
-
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #----------------------------------------------------------------------------------------------------
 
@@ -50,10 +52,26 @@ for cat in ['_buy', '_rent']:
         modelConfigs['model' + cat] = data['model']
         modelConfigs['columns_used' + cat] = data['columns_used']
         modelConfigs['test_errors' + cat] = data['test_errors']
+        modelConfigs['test_errors_notAbsolute' + cat] = data['test_errors_notAbsolute']
+        modelConfigs['test_errors_notAbsolute_Quantile_5%' + cat] = data['test_errors_notAbsolute'].quantile(q=0.05)
+        modelConfigs['test_errors_notAbsolute_Quantile_95%' + cat] = data['test_errors_notAbsolute'].quantile(q=0.95)
+        modelConfigs['test_errorfactor_notAbsolute_Quantile_5%' + cat] = np.exp(data['test_errors_notAbsolute'].quantile(q=0.05))
+        modelConfigs['test_errorfactor_notAbsolute_Quantile_95%' + cat] = np.exp(data['test_errors_notAbsolute'].quantile(q=0.95))
         
 
 #----------------------------------------------------------------------------------------------------
 
   
 # Section 2: Analysing and Debugging
-
+    
+#Plotting distributions of different error measurement types
+fig, ax = plt.subplots(3, 2, figsize=(10,10))
+ax[0][0].set_title('Buy')
+ax[0][1].set_title('Rent')
+sns.histplot(modelConfigs['test_errors_buy'], stat='probability', shrink=0.8, ax=ax[0][0])
+sns.histplot(modelConfigs['test_errors_rent'], stat='probability', shrink=0.8, ax=ax[0][1])
+sns.histplot(modelConfigs['test_errors_notAbsolute_buy'], stat='probability', shrink=0.8, ax=ax[1][0])
+sns.histplot(modelConfigs['test_errors_notAbsolute_rent'], stat='probability', shrink=0.8, ax=ax[1][1])
+sns.histplot(np.exp(modelConfigs['test_errors_notAbsolute_buy']), stat='probability', shrink=0.8, ax=ax[2][0])
+sns.histplot(np.exp(modelConfigs['test_errors_notAbsolute_rent']), stat='probability', shrink=0.8, ax=ax[2][1])
+fig.tight_layout()

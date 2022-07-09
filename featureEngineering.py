@@ -318,7 +318,7 @@ def run():
     # Save dataframe only with cityname and coordinates to file in current folder and web-application folder
     # HINT: Path of web-application folder is defined for my machine and needs to be adjusted for other machines!
     gf.save_data(df_map[['City', 'Latitude', 'Longitude']].sort_values('City'), filename = 'nrwCityCoordinates')
-    gf.save_data(df_map[['City', 'Latitude', 'Longitude']].sort_values('City'), filename = '../buy-rent-price-estimator-for-apartments_web-application/nrwCityCoordinates')
+    gf.save_data(df_map[['City', 'Latitude', 'Longitude']].sort_values('City'), filename = '../Buy-and-Rent-Price-Estimator-for-Apartments_Web-Application/nrwCityCoordinates')
     
 
 # Function run() shall be executed if module is executed directly via console 
