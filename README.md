@@ -7,7 +7,7 @@ Author: <a href="https://github.com/micvolk">Michael Volk</a>
 * Built a machine learning model that estimates apartment prices for buy & rent in german federal state North Rhine-Westphalia. Model is easy usable via a web-application deployed on Heroku: [price-estimator-apartment-nrw.herokuapp.com](https://price-estimator-apartment-nrw.herokuapp.com)
 * Scraped apartment-exposes data as of May 2022 from [immowelt.de](https://www.immowelt.de) (~ 3,500 for buy and ~ 4,600 for rent) with an own developed web-scraper.
 * Cleaned & feature-engineered scraped data to get useful information for building the model.
-* Explored the prepared data with univariate, multivariate and geographic analysis using visulisations: [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html)
+* Explored the prepared data with univariate, multivariate and geographic analysis using visualizations: [micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html](https://micvolk.github.io/Buy-and-Rent-Price-Estimator-for-Apartments/presentation/Exploring.html)
 * Configured and cross-validated different machine learning models: *Random Forest Regressor, K-Nearest-Neighbors Regressor, Linear Regressor*. The best scoring model is a grid-search optimised *Random Forest Regression* model, which yields following results:
   
   | Data set | Cross-validation median relative error | Test-validation median relative error | Test-validation 90%-quantile relative error |
